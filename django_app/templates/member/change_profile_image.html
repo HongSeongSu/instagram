@@ -1,0 +1,10 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+<div>
+    <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        {{ form }}
+        <button type="submit">바꾸기</button>
+    </form>
+</div>
+{% endblock %}

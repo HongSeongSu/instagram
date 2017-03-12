@@ -1,0 +1,13 @@
+.sprite-logo, .sprite-explore, .sprite-activity, .sprite-profile, .sprite-heart-empty, .sprite-heart-full { background-image: url(/static/images/sprites.png); background-size: 352px 339px; }
+
+.sprite-logo { background-size: 352px 339px; background-position: -169px 0; }
+
+.sprite-explore { width: 24px; height: 24px; background-position: -172px -263px; }
+
+.sprite-activity { background-position: -298px -263px; }
+
+.sprite-profile { background-position: -149px -263px; }
+
+.sprite-heart-empty { background-position: -270px -185px; }
+
+.sprite-heart-full { background-position: -246px -185px; }

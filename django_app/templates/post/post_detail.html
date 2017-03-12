@@ -1,0 +1,57 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+<div>{{ post.created_date }}</div>
+<div>
+    <img src="{{ MEDIA_URL }}/{{ post.photo }}" alt="">
+    <p>
+        {{ post.content|linebreaksbr }}
+    </p>
+</div>
+<hr>
+
+<p>Like users</p>
+    {% if post.like_users.all %}
+    <ul>
+        {% for user in post.like_users.all %}
+            <li>{{ user.username }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+<form action="{% url 'post:toggle_like' post_id=post.id %}" method="post">{% csrf_token %}
+    <button type="submit">
+        {% if user in post.like_users.all %}
+        Unlike
+        {% else %}
+        Like
+        {% endif %}
+    </button>
+</form>
+<hr>
+
+
+<div>
+    <p>Comments</p>
+        {% if post.comment_set.all %}
+        <ul>
+            {% for comment in post.comment_set.all %}
+            <li>
+                <span>{{ comment.author.username }} : {{ comment.content }}</span>
+            <form action="{% url 'post:comment_delete' post_id=post.id comment_id=comment.id%}" method="post">{% csrf_token %}
+                <button type="submit">delete</button>
+            </form>
+            </li>
+            {% endfor %}
+        {% else %}
+            <p>No Comments</p>
+        </ul>
+    {% endif %}
+</div>
+<hr>
+
+<form action="{% url 'post:comment_add' post_id=post.id %}" method="POST">{% csrf_token %}
+    {{ comment_form.content }}
+    <button type="submit">Write Comment</button>
+</form>
+
+{% endblock %}
